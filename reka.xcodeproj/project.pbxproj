@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		028D532029F30BD1000A8656 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028D531F29F30BD1000A8656 /* main.swift */; };
+		02C3870529F3D722006D97D2 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3870429F3D721006D97D2 /* CalendarService.swift */; };
+		02C3870729F3D744006D97D2 /* RemindersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3870629F3D744006D97D2 /* RemindersService.swift */; };
+		02C3870929F3D7C6006D97D2 /* EventStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3870829F3D7C6006D97D2 /* EventStoreService.swift */; };
+		02C3870C29F425EE006D97D2 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 02C3870B29F425EE006D97D2 /* ArgumentParser */; };
+		02C3871029F46853006D97D2 /* CLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3870F29F46853006D97D2 /* CLI.swift */; };
+		02C3871329F468E2006D97D2 /* Reka.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C3871229F468E2006D97D2 /* Reka.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +31,11 @@
 /* Begin PBXFileReference section */
 		028D531C29F30BD1000A8656 /* reka */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = reka; sourceTree = BUILT_PRODUCTS_DIR; };
 		028D531F29F30BD1000A8656 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		02C3870429F3D721006D97D2 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		02C3870629F3D744006D97D2 /* RemindersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RemindersService.swift; path = service/RemindersService.swift; sourceTree = SOURCE_ROOT; };
+		02C3870829F3D7C6006D97D2 /* EventStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventStoreService.swift; path = service/EventStoreService.swift; sourceTree = SOURCE_ROOT; };
+		02C3870F29F46853006D97D2 /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
+		02C3871229F468E2006D97D2 /* Reka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reka.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02C3870C29F425EE006D97D2 /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +53,9 @@
 		028D531329F30BD1000A8656 = {
 			isa = PBXGroup;
 			children = (
+				02C3871129F468CE006D97D2 /* app */,
+				02C3870E29F4682F006D97D2 /* cmd */,
+				02C3870D29F4678D006D97D2 /* service */,
 				028D531E29F30BD1000A8656 /* reka */,
 				028D531D29F30BD1000A8656 /* Products */,
 			);
@@ -62,6 +77,32 @@
 			path = reka;
 			sourceTree = "<group>";
 		};
+		02C3870D29F4678D006D97D2 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				02C3870829F3D7C6006D97D2 /* EventStoreService.swift */,
+				02C3870629F3D744006D97D2 /* RemindersService.swift */,
+				02C3870429F3D721006D97D2 /* CalendarService.swift */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		02C3870E29F4682F006D97D2 /* cmd */ = {
+			isa = PBXGroup;
+			children = (
+				02C3870F29F46853006D97D2 /* CLI.swift */,
+			);
+			path = cmd;
+			sourceTree = "<group>";
+		};
+		02C3871129F468CE006D97D2 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				02C3871229F468E2006D97D2 /* Reka.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,6 +119,9 @@
 			dependencies = (
 			);
 			name = reka;
+			packageProductDependencies = (
+				02C3870B29F425EE006D97D2 /* ArgumentParser */,
+			);
 			productName = reka;
 			productReference = 028D531C29F30BD1000A8656 /* reka */;
 			productType = "com.apple.product-type.tool";
@@ -106,6 +150,9 @@
 				Base,
 			);
 			mainGroup = 028D531329F30BD1000A8656;
+			packageReferences = (
+				02C3870A29F425EE006D97D2 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			productRefGroup = 028D531D29F30BD1000A8656 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -120,6 +167,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02C3870529F3D722006D97D2 /* CalendarService.swift in Sources */,
+				02C3870729F3D744006D97D2 /* RemindersService.swift in Sources */,
+				02C3871029F46853006D97D2 /* CLI.swift in Sources */,
+				02C3870929F3D7C6006D97D2 /* EventStoreService.swift in Sources */,
+				02C3871329F468E2006D97D2 /* Reka.swift in Sources */,
 				028D532029F30BD1000A8656 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,7 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -231,7 +283,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -280,6 +332,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		02C3870A29F425EE006D97D2 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		02C3870B29F425EE006D97D2 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02C3870A29F425EE006D97D2 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 028D531429F30BD1000A8656 /* Project object */;
 }
