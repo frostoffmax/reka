@@ -38,6 +38,7 @@
 		02C3871229F468E2006D97D2 /* Reka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reka.swift; sourceTree = "<group>"; };
 		02C3871429F47160006D97D2 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		02C3871529F4717A006D97D2 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		02C3871629F47592006D97D2 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +56,7 @@
 		028D531329F30BD1000A8656 = {
 			isa = PBXGroup;
 			children = (
+				02C3871629F47592006D97D2 /* docs */,
 				02C3871529F4717A006D97D2 /* Readme.md */,
 				02C3871429F47160006D97D2 /* .gitignore */,
 				02C3871129F468CE006D97D2 /* app */,

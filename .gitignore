@@ -28,6 +28,8 @@ Temporary Items
 .apdisk
 
 ### macOS Patch ###
+builds/
+
 # iCloud generated files
 *.icloud
 
