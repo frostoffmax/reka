@@ -4,6 +4,19 @@ import Foundation
 private let Store = EKEventStore()
 
 
+private let dateFormatter = RelativeDateTimeFormatter()
+private func formattedDueDate(from reminder: EKReminder) -> String? {
+    return reminder.dueDateComponents?.date.map {
+        dateFormatter.localizedString(for: $0, relativeTo: Date())
+    }
+}
+
+private func format(_ reminder: EKReminder, at index: Int) -> String {
+    let dateString = formattedDueDate(from: reminder).map { " (\($0))" } ?? ""
+    return "\(index): \(reminder.title ?? "<unknown>")\(dateString)"
+}
+
+
 public final class Calendars2 {
     private static func requestAccess(for type: EKEntityType) -> Bool{
         let semaphore = DispatchSemaphore(value: 0)
@@ -81,6 +94,17 @@ public final class Calendars2 {
     // MARK: - Private functions
     
     private func reminders(onCalendar calendar: EKCalendar,
+                           completion: @escaping (_ reminders: [EKReminder]) -> Void)
+    {
+        let predicate = Store.predicateForReminders(in: [calendar])
+        Store.fetchReminders(matching: predicate) { reminders in
+            let reminders = reminders?
+                .filter { !$0.isCompleted }
+            completion(reminders ?? [])
+        }
+    }
+    
+    private func events(onCalendar calendar: EKCalendar,
                            completion: @escaping (_ reminders: [EKReminder]) -> Void)
     {
         let dayComp = DateComponents(day: -6)
