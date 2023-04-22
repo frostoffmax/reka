@@ -36,6 +36,8 @@
 		02C3870829F3D7C6006D97D2 /* EventStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventStoreService.swift; path = service/EventStoreService.swift; sourceTree = SOURCE_ROOT; };
 		02C3870F29F46853006D97D2 /* CLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLI.swift; sourceTree = "<group>"; };
 		02C3871229F468E2006D97D2 /* Reka.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reka.swift; sourceTree = "<group>"; };
+		02C3871429F47160006D97D2 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		02C3871529F4717A006D97D2 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,8 @@
 		028D531329F30BD1000A8656 = {
 			isa = PBXGroup;
 			children = (
+				02C3871529F4717A006D97D2 /* Readme.md */,
+				02C3871429F47160006D97D2 /* .gitignore */,
 				02C3871129F468CE006D97D2 /* app */,
 				02C3870E29F4682F006D97D2 /* cmd */,
 				02C3870D29F4678D006D97D2 /* service */,
