@@ -44,4 +44,12 @@ Here's an example of a launchd agent that will start every 10 seconds with remin
 </plist>
 ```
 
+*Usefull links about launchd*
+[launchd info](https://www.launchd.info/)
+
+[How to Use launchd to Run Services in macOS](https://medium.com/swlh/how-to-use-launchd-to-run-services-in-macos-b972ed1e352)
+
+
 ![](docs/video/usage_example.gif)
+
+
