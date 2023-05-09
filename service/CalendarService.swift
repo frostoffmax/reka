@@ -33,13 +33,23 @@ class CalendarService: EvenStoreService{
         return now
     }
     
+    func selectNextEventTime()->(Date, Date){
+        let taskDuration = DateComponents(minute: 15)
+        let from = Calendar.current.startOfDay(for: Date.now)
+        let to = Calendar.current.date(byAdding: taskDuration, to: from)!
+        
+        return (from, to)
+    }
+    
     func createEvent(from reminder: EKReminder, for calendar: EKCalendar) -> EKEvent{
         let ev = EKEvent(eventStore: store)
         ev.calendar = calendar
         ev.title = reminder.title
-        ev.notes = reminder.calendarItemIdentifier
+        ev.location = reminder.calendarItemIdentifier
+        ev.notes = reminder.notes
         ev.isAllDay = true
         ev.startDate = calcStartDate(forReminder: reminder)
+        
         
         let timeSpan = DateComponents(minute: 15)
         let endDate = Calendar.current.date(byAdding: timeSpan, to: ev.startDate)
