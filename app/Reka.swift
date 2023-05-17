@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import EventKit
 
 class Reka {
     let reminders: RemindersService
@@ -32,34 +33,41 @@ class Reka {
         let calendar = calendars.fetchCalendar(withName: calendarName)
         let (start, end)  = calculateEventsScanWindow()
         
-        let eventsToProcess = calendars.fetchEvents(for: calendar, from:start, to: end)
-        let allDayEvents = eventsToProcess.filter{i in i.isAllDay}
-        let eventsReminderIds = Set(allDayEvents.map{i in i.location ?? ""})
+        let currentEvents = calendars.fetchEvents(for: calendar, from:start, to: end)
+            .lazy
+            .filter{i in i.isAllDay && !(i.location ?? "").isEmpty}
+            .reduce(
+                into: [String:EKEvent](),
+                { dict, event in dict[event.location!] = event }
+            )
         
-        let actualReminders = reminders.fetchNonCompleted(forList: remindersName)
-        let actialRemindersIds = Set(actualReminders.map{i in i.calendarItemIdentifier})
+        let currentReminders = reminders.fetchNonCompleted(forList: remindersName)
+            .lazy
+            .reduce(into: [String:EKReminder](),
+                    { dict, reminder in dict[reminder.calendarItemIdentifier] = reminder }
+            )
         
         let todayStartOfDay = Calendar.current.startOfDay(for: Date.now)
         
-        for event in allDayEvents{
-            if let reminderId = event.location{
-                if actialRemindersIds.contains(reminderId){
-                    if event.endDate < todayStartOfDay{
-                        let (start, end) = calendars.selectNextEventTime()
-                        event.startDate = start
-                        event.endDate = end
-                        calendars.addEvent(event:event)
-                    }
-                }else{
-                    calendars.removeEvent(event: event)
-                }
+        for eventId in currentEvents.keys{
+            if !currentReminders.keys.contains(eventId){
+                calendars.removeEvent(event: currentEvents[eventId]!)
             }
         }
         
-        for reminder in actualReminders {
-            if !eventsReminderIds.contains(reminder.calendarItemIdentifier){
+        for (reminderId, reminder) in currentReminders {
+            if !currentEvents.keys.contains(reminderId){
                 let event = calendars.createEvent(from: reminder, for: calendar)
                 calendars.addEvent(event: event)
+                continue
+            }
+            
+            let event = currentEvents[reminder.calendarItemIdentifier]!
+            if event.endDate < todayStartOfDay{
+                let (start, end) = calendars.selectNextEventTime()
+                event.startDate = start
+                event.endDate = end
+                calendars.addEvent(event:event)
             }
         }
     }
