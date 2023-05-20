@@ -31,9 +31,9 @@ class Reka {
     
     func runSync(remindersName: String, calendarName: String){
         let calendar = calendars.fetchCalendar(withName: calendarName)
-        let (start, end)  = calculateEventsScanWindow()
+        let (startScanDate, endScanDate)  = calculateEventsScanWindow()
         
-        let currentEvents = calendars.fetchEvents(for: calendar, from:start, to: end)
+        let currentEvents = calendars.fetchEvents(for: calendar, from:startScanDate, to: endScanDate)
             .lazy
             .filter{i in i.isAllDay && !(i.location ?? "").isEmpty}
             .reduce(
@@ -58,7 +58,9 @@ class Reka {
         for (reminderId, reminder) in currentReminders {
             if !currentEvents.keys.contains(reminderId){
                 let event = calendars.createEvent(from: reminder, for: calendar)
-                calendars.addEvent(event: event)
+                if event.endDate < endScanDate{
+                    calendars.addEvent(event: event)
+                }
                 continue
             }
             
